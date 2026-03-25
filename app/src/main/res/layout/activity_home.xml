@@ -1,0 +1,242 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.home.HomeActivity">
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="centerCrop"
+        android:background="@drawable/bg_home" />
+
+
+    <ImageView
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:src="@drawable/ic_setting"
+        android:scaleType="fitXY"
+        android:layout_marginEnd="16dp"
+        android:visibility="visible"
+        android:layout_marginTop="60dp"
+        android:id="@+id/btnSettings" />
+    
+    <ImageView
+        android:layout_width="320dp"
+        android:layout_height="96dp"
+        android:src="@drawable/img_app_name"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:elevation="2dp"
+        android:layout_marginTop="24dp"
+        android:id="@+id/img_app_name"
+        app:layout_constraintTop_toBottomOf="@id/btnSettings"/>
+
+
+    <!--    scvMain-->
+    <ScrollView
+        android:id="@+id/scvMain"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="0dp"
+        android:scrollbars="none"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/img_app_name">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:paddingBottom="30dp"
+            android:layout_height="wrap_content">
+
+            <!--            glOverStart-->
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/glOverStart"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_begin="16dp" />
+
+            <!--            glOverEnd-->
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/glOverEnd"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_end="16dp"
+                />
+
+
+            <!--            glOverEnd-->
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/glOverCenter"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_percent="0.5" />
+
+
+
+            <!--            btnPlay-->
+            <ImageView
+                android:id="@+id/btnPlay"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_marginEnd="8dp"
+                app:layout_constraintDimensionRatio="156:182"
+                android:layout_marginHorizontal="0dp"
+                android:adjustViewBounds="true"
+                android:src="@drawable/img_home_1"
+                app:layout_constraintStart_toStartOf="@id/glOverStart"
+                app:layout_constraintEnd_toEndOf="@id/glOverCenter"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <!--            tv1-->
+
+
+            <!--            btnCosPlay-->
+            <com.couple.avatar.maker.kisscreator.core.custom.text.DoubleStrokeTextView
+                android:id="@+id/tv1"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:fontFamily="@font/cherry_bomb_regular"
+                android:gravity="center_horizontal"
+                android:clipToOutline="false"
+                android:text="@string/play"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="15dp"
+                android:textColor="#FFD3C9"
+                android:textSize="16sp"
+                android:layout_marginEnd="8dp"
+                app:layout_constraintBottom_toBottomOf="@+id/btnPlay"
+                app:layout_constraintStart_toStartOf="@id/glOverStart"
+                app:layout_constraintEnd_toEndOf="@id/glOverCenter"
+                app:layout_constraintTop_toTopOf="@+id/btnPlay"
+                app:layout_constraintVertical_bias="0.0"
+
+                app:outerStrokeColor="#AF7777"
+                app:outerStrokeWidth="3dp" />
+
+            <ImageView
+                android:id="@+id/btnCosPlay"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                app:layout_constraintDimensionRatio="156:182"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:adjustViewBounds="true"
+                android:src="@drawable/img_home_2"
+                app:layout_constraintStart_toStartOf="@id/glOverCenter"
+                app:layout_constraintEnd_toEndOf="@id/glOverEnd"
+
+                />
+
+            <!--            tv2-->
+            <com.couple.avatar.maker.kisscreator.core.custom.text.DoubleStrokeTextView
+                android:id="@+id/tv2"
+                android:maxLines="2"
+                android:layout_width="170dp"
+                android:layout_height="0dp"
+                android:fontFamily="@font/cherry_bomb_regular"
+                android:gravity="center_horizontal"
+                android:text="@string/tv_cosplay"
+                android:textColor="#FFD3C9"
+                android:textSize="16sp"
+                android:layout_marginTop="15dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="0dp"
+                app:layout_constraintBottom_toBottomOf="@+id/btnCosPlay"
+                app:layout_constraintStart_toStartOf="@id/glOverCenter"
+                app:layout_constraintEnd_toEndOf="@id/glOverEnd"
+                app:layout_constraintTop_toTopOf="@+id/btnCosPlay"
+                app:outerStrokeColor="#AF7777"
+                app:outerStrokeWidth="2dp" />
+
+
+
+            <ImageView
+                android:id="@+id/btnRandom"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                app:layout_constraintDimensionRatio="156:182"
+                android:layout_marginTop="8dp"
+                android:adjustViewBounds="true"
+                android:src="@drawable/img_home_3"
+                android:layout_marginStart="8dp"
+                app:layout_constraintStart_toStartOf="@id/glOverCenter"
+                app:layout_constraintEnd_toEndOf="@id/glOverEnd"
+                app:layout_constraintTop_toBottomOf="@+id/btnCosPlay" />
+
+            <!--            tv2-->
+            <com.couple.avatar.maker.kisscreator.core.custom.text.DoubleStrokeTextView
+                android:id="@+id/tv3"
+                android:maxLines="2"
+                android:layout_width="150dp"
+                android:layout_height="0dp"
+                android:fontFamily="@font/cherry_bomb_regular"
+                android:gravity="center_horizontal"
+                android:text="@string/random"
+                android:textColor="#FFD3C9"
+                android:textSize="16sp"
+                android:layout_marginTop="15dp"
+                android:layout_marginStart="25dp"
+                app:layout_constraintBottom_toBottomOf="@+id/btnRandom"
+                app:layout_constraintStart_toStartOf="@id/glOverCenter"
+                app:layout_constraintTop_toTopOf="@+id/btnRandom"
+                app:outerStrokeColor="#AF7777"
+                app:outerStrokeWidth="2dp" />
+
+
+            <ImageView
+                android:id="@+id/btnMyCreation"
+                android:layout_width="0dp"
+                app:layout_constraintDimensionRatio="156:182"
+                android:layout_height="0dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginTop="8dp"
+                android:adjustViewBounds="true"
+                android:src="@drawable/img_home_4"
+                app:layout_constraintTop_toBottomOf="@id/btnPlay"
+                app:layout_constraintStart_toStartOf="@id/glOverStart"
+                app:layout_constraintEnd_toEndOf="@id/glOverCenter"
+
+
+                />
+
+            <!--            tv2-->
+            <com.couple.avatar.maker.kisscreator.core.custom.text.DoubleStrokeTextView
+                android:id="@+id/tv4"
+                android:layout_width="200dp"
+                android:layout_height="0dp"
+                android:fontFamily="@font/cherry_bomb_regular"
+                android:gravity="center_horizontal"
+                android:text="@string/creation"
+                android:textColor="#FFD3C9"
+                android:textSize="16sp"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="15dp"
+                app:layout_constraintBottom_toBottomOf="@+id/btnMyCreation"
+                app:layout_constraintStart_toEndOf="@id/glOverStart"
+                app:layout_constraintEnd_toEndOf="@id/glOverCenter"
+                app:layout_constraintTop_toTopOf="@+id/btnMyCreation"
+                app:outerStrokeColor="#AF7777"
+                app:outerStrokeWidth="2dp" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </ScrollView>
+
+    <!--    flNativeCollab-->
+    <FrameLayout
+        android:id="@+id/flNativeCollab"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent">
+    </FrameLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
