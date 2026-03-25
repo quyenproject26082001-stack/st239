@@ -92,9 +92,14 @@ class ViewActivity : BaseActivity<ActivityViewBinding>() {
                         }
                     }
                 } else {
-                    btnTelegram.visible()
-                    btnWhatsapp.visible()
+                    btnTelegram.gone()
+                    btnWhatsapp.gone()
+                    lnlShareButtons.gone()
                 }
+            }
+
+            if (viewModel.statusFrom != ValueKey.AVATAR_TYPE) {
+                lnlBottom.gone()
             }
 
             // Set scaleType based on content type
@@ -160,13 +165,8 @@ class ViewActivity : BaseActivity<ActivityViewBinding>() {
             btnActionBarLeftText.visible()
             btnActionBarRightText.gone()
             btnActionBarRight.visible()
-            if (viewModel.statusFrom == ValueKey.MY_DESIGN_TYPE) {
-                btnActionBarNextRight.gone()
-                btnActionBarNextRight1.gone()
-            } else {
-                btnActionBarNextRight.visible()
-                btnActionBarNextRight1.visible()
-            }
+            btnActionBarNextRight.visible()
+            btnActionBarNextRight1.visible()
         }
     }
 

@@ -70,8 +70,7 @@ class HomeActivity : BaseActivity<ActivityHomeBinding>() {
 //        }
     }
 
-    // Enable background music for HomeActivity
-    override fun shouldPlayBackgroundMusic(): Boolean = false
+    override fun shouldPlayBackgroundMusic(): Boolean = true
 
     @SuppressLint("MissingSuperCall", "GestureBackNavigation")
     override fun onBackPressed() {

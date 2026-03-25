@@ -18,6 +18,7 @@ import com.couple.avatar.maker.kisscreator.databinding.ActivitySettingsBinding
 import com.couple.avatar.maker.kisscreator.ui.language.LanguageActivity
 import com.couple.avatar.maker.kisscreator.core.extensions.tap
 import com.couple.avatar.maker.kisscreator.core.helper.MusicHelper
+import com.couple.avatar.maker.kisscreator.core.helper.SoundHelper
 import com.couple.avatar.maker.kisscreator.core.helper.RateHelper
 import kotlin.jvm.java
 
@@ -27,9 +28,9 @@ class SettingsActivity : BaseActivity<ActivitySettingsBinding>() {
     }
 
     override fun initView() {
-       // binding.tvMusic.select()
         initRate()
         initMusic()
+        initEffect()
         binding.tvSetting.select()
     }
 
@@ -41,6 +42,23 @@ class SettingsActivity : BaseActivity<ActivitySettingsBinding>() {
         binding.btnMusic.setImageResource(
             if (isEnabled) R.drawable.ic_sw_on else R.drawable.ic_sw_off
         )
+    }
+
+    private fun initEffect() {
+        updateEffectUI(sharePreference.isEffectEnabled())
+    }
+
+    private fun updateEffectUI(isEnabled: Boolean) {
+        binding.btnEffect.setImageResource(
+            if (isEnabled) R.drawable.ic_sw_on else R.drawable.ic_sw_off
+        )
+    }
+
+    private fun toggleEffect() {
+        val isEnabled = !sharePreference.isEffectEnabled()
+        sharePreference.setEffectEnabled(isEnabled)
+        SoundHelper.isEffectEnabled = isEnabled
+        updateEffectUI(isEnabled)
     }
 
     private fun toggleMusic() {
@@ -57,7 +75,8 @@ class SettingsActivity : BaseActivity<ActivitySettingsBinding>() {
     override fun viewListener() {
         binding.apply {
            btnActionBarLeft.tap { handleBackLeftToRight() }
-        //    layoutMusic.tap { toggleMusic() }
+            btnMusic.tap { toggleMusic() }
+            btnEffect.tap { toggleEffect() }
             btnLang.tap { startIntentRightToLeft(LanguageActivity::class.java, IntentKey.INTENT_KEY) }
             btnShareApp.tap(1500) { shareApp() }
             btnRate.tap {
@@ -75,6 +94,8 @@ class SettingsActivity : BaseActivity<ActivitySettingsBinding>() {
     override fun initText() {
         //binding.actionBar.tvCenter.select()
     }
+
+    override fun shouldPlayBackgroundMusic(): Boolean = true
 
     override fun initActionBar() {
 //        binding.actionBar.apply {

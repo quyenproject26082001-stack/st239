@@ -38,7 +38,7 @@ class MyDesignAdapter : BaseAdapter<MyAlbumModel, ItemMyDesignBinding>(ItemMyDes
                 .load(file)
                 .thumbnail(0.1f) // Load 10% quality thumbnail first
                 .override(400, 400) // Resize to save memory
-                .transform(RoundedCorners(24)) // Match original design
+                .transform(RoundedCorners(4)) // Match original design
                 .diskCacheStrategy(DiskCacheStrategy.AUTOMATIC)
                 .signature(ObjectKey(file.lastModified())) // Cache invalidation
                 .into(imvImage)

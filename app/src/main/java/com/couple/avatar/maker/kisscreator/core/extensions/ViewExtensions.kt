@@ -77,6 +77,7 @@ fun Activity.hideNavigation(isBlack: Boolean = false) {
 fun View.tap(interval: Long = 200, action: (View) -> Unit) {
     setOnClickListener {
         if (System.currentTimeMillis() - DataLocal.lastClickTime >= interval) {
+            SoundHelper.playSound(R.raw.touch)
             action(it)
             DataLocal.lastClickTime = System.currentTimeMillis()
         }

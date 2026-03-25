@@ -40,8 +40,7 @@ abstract class BaseActivity<T : ViewBinding> : AppCompatActivity() {
 
     open fun initAds() {}
 
-    // Override this to disable background music for specific activities (splash, intro, language, permission)
-    protected open fun shouldPlayBackgroundMusic(): Boolean = false
+    protected open fun shouldPlayBackgroundMusic(): Boolean = true
 
     protected val loadingDialog: WaitingDialog by lazy {
         WaitingDialog(this)
@@ -67,6 +66,7 @@ abstract class BaseActivity<T : ViewBinding> : AppCompatActivity() {
         if (!SoundHelper.isSoundNotNull(R.raw.touch)) {
             SoundHelper.loadSound(this, R.raw.touch)
         }
+        SoundHelper.isEffectEnabled = sharePreference.isEffectEnabled()
         // Initialize background music only if activity should play it
         if (shouldPlayBackgroundMusic()) {
             MusicHelper.init(this)

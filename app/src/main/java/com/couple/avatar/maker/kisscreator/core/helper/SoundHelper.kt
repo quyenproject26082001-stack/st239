@@ -6,6 +6,7 @@ import android.media.SoundPool
 object SoundHelper {
     private val soundPool = SoundPool.Builder().setMaxStreams(5).build()
     private val soundMap = mutableMapOf<Int, Int>()
+    var isEffectEnabled: Boolean = true
 
     fun isSoundNotNull(resId: Int) : Boolean {
         return soundMap[resId] != null
@@ -18,6 +19,7 @@ object SoundHelper {
     }
 
     fun playSound(resId: Int) {
+        if (!isEffectEnabled) return
         soundMap[resId]?.let { id ->
             soundPool.play(id, 1f, 1f, 0, 0, 1f)
         }

@@ -11,6 +11,7 @@ import com.couple.avatar.maker.kisscreator.core.utils.key.SharePreferenceKey.COU
 import com.couple.avatar.maker.kisscreator.core.utils.key.SharePreferenceKey.FIRST_LANG_KEY
 import com.couple.avatar.maker.kisscreator.core.utils.key.SharePreferenceKey.FIRST_PERMISSION_KEY
 import com.couple.avatar.maker.kisscreator.core.utils.key.SharePreferenceKey.KEY_LANGUAGE
+import com.couple.avatar.maker.kisscreator.core.utils.key.SharePreferenceKey.EFFECT_KEY
 import com.couple.avatar.maker.kisscreator.core.utils.key.SharePreferenceKey.MUSIC_KEY
 import com.couple.avatar.maker.kisscreator.core.utils.key.SharePreferenceKey.PRIDE_CUSTOM_FLAGS
 import com.couple.avatar.maker.kisscreator.core.utils.key.SharePreferenceKey.RATE_KEY
@@ -143,5 +144,14 @@ class SharePreferenceHelper(val context: Context) {
         val editor = preferences.edit()
         editor.putBoolean(MUSIC_KEY, enabled)
         editor.apply()
+    }
+
+    // Effect
+    fun isEffectEnabled(): Boolean {
+        return preferences.getBoolean(EFFECT_KEY, true)
+    }
+
+    fun setEffectEnabled(enabled: Boolean) {
+        preferences.edit().putBoolean(EFFECT_KEY, enabled).apply()
     }
 }
