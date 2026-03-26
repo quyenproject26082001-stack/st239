@@ -24,7 +24,7 @@
         android:fontFamily="@font/cherry_bomb_regular"
         android:gravity="center"
         android:text="@string/this_action_can_contain_ads"
-        android:textColor="#FFFFFF"
+        android:textColor="#FFE5EE"
         android:textSize="12sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -41,10 +41,17 @@
 
         <ImageView
             android:id="@+id/ivLoading"
-            android:layout_width="37dp"
-            android:layout_height="37dp"
+            android:layout_width="232dp"
+            android:layout_height="16dp"
             android:layout_gravity="center"
-            android:src="@drawable/ic_loading_spinner" />
+            android:scaleType="fitXY"
+            android:src="@drawable/ic_loading" />
+
+        <com.ponymaker.avatarcreator.maker.core.custom.LoadingMaskView
+            android:id="@+id/vLoadingMask"
+            android:layout_width="232dp"
+            android:layout_height="16dp"
+            android:layout_gravity="center" />
 
     </FrameLayout>
 

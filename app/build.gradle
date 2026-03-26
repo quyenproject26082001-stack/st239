@@ -6,18 +6,18 @@ plugins {
 }
 
 android {
-    namespace 'com.couple.avatar.maker.kisscreator'
+    namespace 'com.ponymaker.avatarcreator.maker'
     compileSdk 36
 
     defaultConfig {
-        applicationId "com.couple.avatar.maker.kisscreator"
+        applicationId "com.ponymaker.avatarcreator.maker"
         minSdk 24
         targetSdk 36
         versionCode 1
         versionName "1.0.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         def formattedDate = new Date().format('MM.dd.yyyy')
-        archivesBaseName = "ST225_V${versionName}_${formattedDate}"
+        archivesBaseName = "ST239_Pony_OC_Avatar_Creator_5_V${versionName}_${formattedDate}"
 
     }
 

@@ -34,14 +34,7 @@
             android:layout_margin="2dp"
             app:strokeColor="@color/transparent">
 
-            <ImageView
-                android:id="@+id/imvImage"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_margin="0dp"
-                tools:src="@color/dark"
-                android:clipToOutline="true"
-                android:scaleType="centerCrop" />
+
             <!--            imvImage-->
             <ImageView
                 android:id="@+id/imvImageBG"

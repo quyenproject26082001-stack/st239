@@ -87,7 +87,7 @@
                 android:scaleType="centerCrop" />
 
             <!--        drawView-->
-            <com.couple.avatar.maker.kisscreator.core.custom.drawview.DrawView
+            <com.ponymaker.avatarcreator.maker.core.custom.drawview.DrawView
                 android:id="@+id/drawView"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -104,7 +104,7 @@
         android:id="@+id/flFunction"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="8dp"
         android:clipChildren="false"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toBottomOf="@id/cardSave">
@@ -124,7 +124,9 @@
             android:layout_marginTop="0dp"
             android:layout_marginBottom="20dp"
             android:background="@drawable/bg_cus"
-            android:visibility="gone" />
+            android:visibility="gone"
+            tools:visibility="gone"
+            />
 
 
         <LinearLayout
@@ -289,7 +291,7 @@
             android:layout_height="match_parent"
             android:orientation="vertical"
             android:visibility="gone"
-            tools:visibility="gone">
+            tools:visibility="visible">
 <!--            &lt;!&ndash; Title: Sticker &ndash;&gt;-->
             <TextView
                 android:id="@+id/tvTitleSticker"
@@ -327,7 +329,7 @@
             android:layout_marginBottom="22dp"
             android:orientation="vertical"
             android:visibility="gone"
-            tools:visibility="gone">
+            tools:visibility="visible">
 
             <!-- Title: Speech Bubbles -->
             <TextView
@@ -366,7 +368,7 @@
             android:clipChildren="false"
             android:paddingBottom="50dp"
             android:isScrollContainer="true"
-            android:paddingTop="15dp"
+            android:paddingTop="0dp"
             android:scrollbars="none"
             android:visibility="gone"
             tools:visibility="visible">
@@ -573,7 +575,7 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:rotationY="-83"
-        app:layout_constraintGuide_percent="0.75" />
+        app:layout_constraintGuide_percent="0.7" />
 
     <!--    &lt;!&ndash;    flNativeCollab&ndash;&gt;-->
     <!--    <FrameLayout-->
