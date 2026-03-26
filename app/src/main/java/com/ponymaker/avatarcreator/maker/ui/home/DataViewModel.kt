@@ -214,7 +214,7 @@ class DataViewModel() : ViewModel() {
     }
 
     private fun getDataAPINoColor(baseDomain: String, part: PartAPI, layer: String): ArrayList<LayerModel> {
-        val actualQuantity = if (part.position == "data3") part.quantity / 2 else part.quantity
+        val actualQuantity = if (part.position in listOf("data1","data3","data4","data5")) part.quantity / 2 else part.quantity
         val layerPath = ArrayList<LayerModel>(actualQuantity)
         val prefix = "$baseDomain${DomainKey.SUB_DOMAIN}/${part.position}/${layer}/"
         val suffix = DomainKey.LAYER_EXTENSION

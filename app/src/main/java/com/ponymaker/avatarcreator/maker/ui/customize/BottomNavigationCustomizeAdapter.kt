@@ -97,7 +97,10 @@ class BottomNavigationCustomizeAdapter(private val context: Context) :
             // Layer 2: imvImageBG - actual image with margin (2dp margin)
             Glide.with(root)
                 .load(item.imageNavigation)
-                .encodeQuality(100)
+                .override(180)
+                .centerCrop()
+                .diskCacheStrategy(com.bumptech.glide.load.engine.DiskCacheStrategy.RESOURCE)
+                .downsample(com.bumptech.glide.load.resource.bitmap.DownsampleStrategy.CENTER_OUTSIDE)
 //                .listener(object : RequestListener<Drawable> {
 //                    override fun onLoadFailed(
 //                        e: GlideException?,
