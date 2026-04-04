@@ -17,6 +17,7 @@ import com.bumptech.glide.load.DataSource
 import com.bumptech.glide.load.engine.GlideException
 import com.bumptech.glide.request.RequestListener
 import com.bumptech.glide.request.target.Target
+import com.lvt.ads.util.Admob
 import com.ponymaker.avatarcreator.maker.R
 import com.ponymaker.avatarcreator.maker.core.base.BaseActivity
 import com.ponymaker.avatarcreator.maker.core.extensions.gone
@@ -91,8 +92,8 @@ class TrendingActivity : BaseActivity<ActivityTrendingBinding>() {
     override fun viewListener() {
         binding.apply {
             actionBar.btnActionBarLeftText.tap { showInterAll { handleBackLeftToRight() } }
-            btnGenerate.tap(0) { handleGenerate() }
-            actionBar.btnActionBarRightText.tap { handleEdit() }
+            btnGenerate.tap(0) { showInterAll {  handleGenerate() }}
+            actionBar.btnActionBarRightText.tap { showInterAll {  handleEdit() }}
         }
     }
 
@@ -418,5 +419,22 @@ class TrendingActivity : BaseActivity<ActivityTrendingBinding>() {
                     View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION or
                     View.SYSTEM_UI_FLAG_HIDE_NAVIGATION or
                     View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY
+    }
+
+    fun initNativeCollab() {
+        Admob.getInstance().loadNativeCollapNotBanner(
+            this,
+            getString(R.string.native_cl_roll),
+            binding.flNativeCollab
+        )
+    }
+
+    override fun initAds() {
+        initNativeCollab()
+    }
+
+    override fun onRestart() {
+        super.onRestart()
+        initNativeCollab()
     }
 }

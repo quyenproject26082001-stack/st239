@@ -21,6 +21,7 @@ import com.ponymaker.avatarcreator.maker.core.extensions.hideNavigation
 import com.ponymaker.avatarcreator.maker.core.extensions.invisible
 import com.ponymaker.avatarcreator.maker.core.extensions.loadImage
 import com.ponymaker.avatarcreator.maker.core.extensions.loadImageFromFile
+import com.ponymaker.avatarcreator.maker.core.extensions.loadNativeCollabAds
 import com.ponymaker.avatarcreator.maker.core.extensions.requestPermission
 import com.ponymaker.avatarcreator.maker.core.extensions.select
 import com.ponymaker.avatarcreator.maker.core.extensions.setImageActionBar
@@ -282,16 +283,16 @@ class ViewActivity : BaseActivity<ActivityViewBinding>() {
         }
     }
 
-//    override fun initAds() {
-//        initNativeCollab()
-//    }
-//
-//    fun initNativeCollab() {
-//
-//        loadNativeCollabAds(R.string.native_cl_detail, binding.flNativeCollab)
-//
-//
-//    }
+    override fun initAds() {
+        initNativeCollab()
+    }
+
+    fun initNativeCollab() {
+
+        loadNativeCollabAds(R.string.native_cl_detail, binding.flNativeCollab)
+
+
+    }
 
     @android.annotation.SuppressLint("MissingSuperCall")
     override fun onBackPressed() {

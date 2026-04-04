@@ -8,6 +8,7 @@ import androidx.activity.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
+import com.lvt.ads.util.Admob
 import com.ponymaker.avatarcreator.maker.R
 import com.ponymaker.avatarcreator.maker.core.base.BaseActivity
 import com.ponymaker.avatarcreator.maker.core.extensions.checkPermissions
@@ -157,5 +158,21 @@ class CosplaySuccessfulActivity : BaseActivity<ActivityCosplaySuccessfulBinding>
     @SuppressLint("MissingSuperCall")
     override fun onBackPressed() {
         handleBackLeftToRight()
+    }
+
+    fun initNativeCollab() {
+        Admob.getInstance().loadNativeCollapNotBanner(
+            this,
+            getString(R.string.native_cl_cosplaySuccess),
+            binding.flNativeCollab
+        )
+    }
+
+    override fun initAds() {
+        initNativeCollab()
+    }
+
+    override fun onRestart() {
+        super.onRestart()
     }
 }

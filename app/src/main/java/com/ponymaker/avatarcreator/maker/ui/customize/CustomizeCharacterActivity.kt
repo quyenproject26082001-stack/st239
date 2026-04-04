@@ -154,7 +154,7 @@ class CustomizeCharacterActivity : BaseActivity<ActivityCustomizeBinding>() {
                     handleSave()
                 }
             }
-            btnRandom.tap { viewModel.checkDataInternet(this@CustomizeCharacterActivity) { handleRandomAllLayer() } }
+            btnRandom.tap { viewModel.checkDataInternet(this@CustomizeCharacterActivity) { showInterAll {   handleRandomAllLayer() } }}
             btnColor.tap { viewModel.checkDataInternet(this@CustomizeCharacterActivity) { handleStatusColor() } }
             btnHide.tap { viewModel.checkDataInternet(this@CustomizeCharacterActivity) { viewModel.setIsHideView() } }
             btnMan.tap { handleGenderSwitch(1) }
@@ -564,8 +564,9 @@ class CustomizeCharacterActivity : BaseActivity<ActivityCustomizeBinding>() {
 
     private fun confirmExit() {
         val dialog =
-            YesNoDialog(this, R.string.exit, R.string.do_you_want_to_exit,  isError = false,
-                dialogType = DialogType.DELETE_EXIT)
+            YesNoDialog(this, R.string.exit, R.string.do_you_want_to_exit,
+                isError = false,
+                dialogType = DialogType.DELETE_EXIT,true)
         LanguageHelper.setLocale(this)
         dialog.show()
         dialog.onYesClick = {
@@ -771,19 +772,19 @@ class CustomizeCharacterActivity : BaseActivity<ActivityCustomizeBinding>() {
         confirmExit()
     }
 
-//    fun initNativeCollab() {
-//        Admob.getInstance().loadNativeCollapNotBanner(this,getString(R.string.native_cl_custom),
-//            binding.flNativeCollab
-//        )
-//    }
-//
-//    override fun initAds() {
-//        initNativeCollab()
-//    }
+    fun initNativeCollab() {
+        Admob.getInstance().loadNativeCollapNotBanner(this,getString(R.string.native_cl_custom),
+            binding.flNativeCollab
+        )
+    }
+
+    override fun initAds() {
+        initNativeCollab()
+    }
 
     override fun onRestart() {
         super.onRestart()
-       // initNativeCollab()
+        initNativeCollab()
 
     }
 

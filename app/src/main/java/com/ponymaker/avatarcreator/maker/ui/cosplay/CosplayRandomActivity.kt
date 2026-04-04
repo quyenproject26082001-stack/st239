@@ -10,6 +10,7 @@ import androidx.activity.viewModels
 import androidx.core.graphics.createBitmap
 import androidx.lifecycle.lifecycleScope
 import com.bumptech.glide.Glide
+import com.lvt.ads.util.Admob
 import com.ponymaker.avatarcreator.maker.R
 import com.ponymaker.avatarcreator.maker.core.base.BaseActivity
 import com.ponymaker.avatarcreator.maker.core.extensions.gone
@@ -66,9 +67,9 @@ class CosplayRandomActivity : BaseActivity<ActivityCosplayRandomBinding>() {
 
     override fun viewListener() {
         binding.apply {
-            btnGenerate.tap(800) { handleGenerate() }
+            btnGenerate.tap(800) { showInterAll {  handleGenerate() }}
             btnCosPlay.tap(800) { customizeViewModel.checkDataInternet(this@CosplayRandomActivity) { handlePlay() } }
-            actionBar.btnActionBarLeftText.tap { handleBackLeftToRight() }
+            actionBar.btnActionBarLeftText.tap { showInterAll {  handleBackLeftToRight() }}
             actionBar.btnActionBarRight.tap {
                 vOverlayGuide.visible()
                 containerGuide.visible()
@@ -232,6 +233,22 @@ class CosplayRandomActivity : BaseActivity<ActivityCosplayRandomBinding>() {
         // or View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
     }
 
+    fun initNativeCollab() {
+        Admob.getInstance().loadNativeCollapNotBanner(
+            this,
+            getString(R.string.native_cl_cosplay),
+            binding.flNativeCollab
+        )
+    }
+
+    override fun initAds() {
+        initNativeCollab()
+    }
+
+    override fun onRestart() {
+        super.onRestart()
+        initNativeCollab()
+    }
 
 
 }

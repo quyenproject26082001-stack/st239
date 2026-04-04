@@ -30,16 +30,26 @@
     </FrameLayout>
 
     <!--    &lt;!&ndash;    native_ads&ndash;&gt;-->
-    <!--    <FrameLayout-->
-    <!--        android:id="@+id/native_ads"-->
-    <!--        android:layout_width="match_parent"-->
-    <!--        android:layout_height="wrap_content"-->
-    <!--        app:layout_constraintTop_toBottomOf="@id/layoutActionBar">-->
+        <FrameLayout
+            android:id="@+id/native_ads"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/cvType">
 
-    <!--        <include layout="@layout/ads_native_collap_banner_shimmer" />-->
-    <!--    </FrameLayout>-->
+            <include layout="@layout/ads_native_collap_banner_shimmer" />
+        </FrameLayout>
 
-
+    <!--    frmList-->
+    <androidx.fragment.app.FragmentContainerView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginBottom="0dp"
+        android:paddingTop="0dp"
+        app:layout_goneMarginTop="0dp"
+        android:layout_marginTop="-16dp"
+        android:background="@drawable/bg_list_creation"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/cvType" />
 
     <!--    frmList-->
     <androidx.fragment.app.FragmentContainerView
@@ -48,10 +58,9 @@
         android:layout_height="0dp"
         android:layout_marginBottom="0dp"
         app:layout_goneMarginTop="0dp"
-        android:layout_marginTop="-16dp"
-        tools:background="@drawable/bg_list_creation"
+        android:layout_marginTop="6dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/cvType" />
+        app:layout_constraintTop_toBottomOf="@id/native_ads" />
     <!--    cvType-->
     <FrameLayout
         android:id="@+id/cvType"
@@ -141,11 +150,11 @@
 
 
     <!--    &lt;!&ndash;    flNativeCollab&ndash;&gt;-->
-    <!--    <FrameLayout-->
-    <!--        android:id="@+id/flNativeCollab"-->
-    <!--        android:layout_width="match_parent"-->
-    <!--        android:layout_height="wrap_content"-->
-    <!--        app:layout_constraintBottom_toBottomOf="parent">-->
+        <FrameLayout
+            android:id="@+id/flNativeCollab"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="parent">
 
-    <!--    </FrameLayout>-->
+        </FrameLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

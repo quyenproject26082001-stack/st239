@@ -1,77 +1,95 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
-    <!--    flOutSide-->
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tool="http://schemas.android.com/tools">
+
     <FrameLayout
         android:id="@+id/flOutSide"
         android:layout_width="match_parent"
+        android:clipToPadding="false"
+        android:clipToOutline="false"
+        android:clipChildren="false"
         android:layout_height="match_parent">
 
-        <!--        layoutMain-->
-        <androidx.cardview.widget.CardView
+        <FrameLayout
             android:id="@+id/layoutMain"
             app:cardBackgroundColor="@color/transparent"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
+            android:clipToPadding="false"
+            android:clipToOutline="false"
+            android:clipChildren="false"
             android:layout_marginHorizontal="16dp"
             app:cardCornerRadius="8dp"
             app:cardElevation="0dp">
 
-            <androidx.constraintlayout.widget.ConstraintLayout
+            <LinearLayout
                 android:id="@+id/containerDialog"
                 android:layout_width="311dp"
-                android:layout_height="172dp"
-                android:background="@drawable/bg_dialog_delete_exit">
+                android:clipToPadding="false"
+                android:clipToOutline="false"
+                android:clipChildren="false"
+                android:layout_height="wrap_content"
+                android:paddingBottom="20dp"
+                android:background="@drawable/bg_body_dialog"
+                android:orientation="vertical">
 
-                <TextView
-                    android:id="@+id/tvTitle"
-                    style="@style/single_marquee"
-                    android:layout_width="0dp"
+                <!-- Title -->
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="156dp"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="-20dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginHorizontal="90dp"
-                    android:layout_marginTop="2dp"
-                    android:background="@color/transparent"
-                    android:fontFamily="@font/chewy_regular"
-                    android:gravity="center"
-                    android:paddingVertical="5dp"
-                    android:text="@string/delete"
-                    android:textColor="#FFFFFF"
-                    android:textSize="20sp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    android:clipToPadding="false"
+                    android:clipToOutline="false"
+                    android:clipChildren="false"
+                    android:background="@drawable/bg_title_dialog">
 
-                <!--            tvDescription-->
+                    <TextView
+                        android:id="@+id/tvTitle"
+                        style="@style/single_marquee"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="90dp"
+                        android:layout_marginTop="2dp"
+                        android:background="@color/transparent"
+                        android:fontFamily="@font/chewy_regular"
+                        android:gravity="center"
+                        android:paddingVertical="5dp"
+                        android:text="@string/delete"
+                        android:textColor="#FFFFFF"
+                        android:textSize="20sp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <!-- Description -->
                 <TextView
                     android:id="@+id/tvDescription"
-                    android:layout_width="0dp"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="0dp"
+                    android:layout_marginTop="12dp"
                     android:fontFamily="@font/cherry_bomb_regular"
                     android:gravity="center"
                     android:paddingHorizontal="24dp"
                     android:text="@string/do_you_want_to_exit"
                     android:textColor="#FFFFFF"
-                    android:textSize="14sp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintBottom_toTopOf="@id/llButtons"
-                    app:layout_constraintTop_toBottomOf="@id/tvTitle" />
+                    android:textSize="14sp" />
 
+                <!-- Buttons -->
                 <LinearLayout
                     android:id="@+id/llButtons"
-                    android:layout_width="0dp"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="35dp"
+                    android:layout_marginTop="8dp"
                     android:layout_marginBottom="16dp"
                     android:gravity="center"
-                    android:orientation="horizontal"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent">
+                    android:orientation="horizontal">
 
-                    <!--                    btnNo-->
                     <TextView
                         android:id="@+id/btnNo"
                         android:layout_width="88dp"
@@ -84,7 +102,6 @@
                         android:textColor="#FFFFFF"
                         android:textSize="16sp" />
 
-                    <!--                    btnYes-->
                     <TextView
                         android:id="@+id/btnYes"
                         android:layout_width="88dp"
@@ -99,7 +116,17 @@
                         android:textSize="16sp" />
                 </LinearLayout>
 
-            </androidx.constraintlayout.widget.ConstraintLayout>
+                <!-- Native Ad -->
+                <FrameLayout
+                    android:id="@+id/flNativeAd"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:visibility="gone"
+                    tool:visibility="gone">
+                    <include layout="@layout/ads_native_medium_btn_bottom_2_shimmer" />
+                </FrameLayout>
+
+            </LinearLayout>
 
             <ImageView
                 android:id="@+id/spin"
@@ -109,7 +136,7 @@
                 android:src="@drawable/ic_loading"
                 android:visibility="gone" />
 
-        </androidx.cardview.widget.CardView>
+        </FrameLayout>
 
     </FrameLayout>
 </layout>

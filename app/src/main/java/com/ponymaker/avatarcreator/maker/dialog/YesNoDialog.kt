@@ -7,6 +7,7 @@ import android.view.animation.LinearInterpolator
 import android.widget.LinearLayout
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.constraintlayout.widget.ConstraintSet
+import com.lvt.ads.util.Admob
 import com.ponymaker.avatarcreator.maker.core.extensions.gone
 import com.ponymaker.avatarcreator.maker.core.extensions.hideNavigation
 import com.ponymaker.avatarcreator.maker.core.extensions.tap
@@ -29,7 +30,9 @@ class YesNoDialog(
     val title: Int,
     val description: Int,
     val isError: Boolean = false,
-    val dialogType: DialogType = DialogType.DELETE_EXIT
+    val dialogType: DialogType = DialogType.DELETE_EXIT,
+    val showNativeAd: Boolean = false
+
 ) : BaseDialog<DialogConfirmBinding>(context, maxWidth = true, maxHeight = true) {
     override val layoutId: Int = R.layout.dialog_confirm
     override val isCancelOnTouchOutside: Boolean = false
@@ -49,6 +52,15 @@ class YesNoDialog(
         }
         context.hideNavigation()
         binding.tvTitle.isSelected = true
+        if (showNativeAd) {
+            binding.flNativeAd.visible()
+            Admob.getInstance().loadNativeAd(
+                context,
+                context.getString(R.string.native_dialog),
+                binding.flNativeAd,
+                com.lvt.ads.R.layout.ads_native_avg2
+            )
+        }
     }
 
     private fun initBackground() {

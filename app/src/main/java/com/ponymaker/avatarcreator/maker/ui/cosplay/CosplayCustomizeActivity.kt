@@ -12,6 +12,7 @@ import android.view.WindowManager
 import androidx.activity.viewModels
 import androidx.lifecycle.lifecycleScope
 import com.bumptech.glide.Glide
+import com.lvt.ads.util.Admob
 import com.ponymaker.avatarcreator.maker.R
 import com.ponymaker.avatarcreator.maker.core.base.BaseActivity
 import com.ponymaker.avatarcreator.maker.core.extensions.gone
@@ -63,7 +64,7 @@ class CosplayCustomizeActivity : BaseActivity<ActivityCosplayCustomizeBinding>()
 
     override fun initView() {
         initRcv()
-        binding.tvCountDown.text = "10:00"
+        binding.tvCountDown.text = "15:00"
         binding.progressBar.clipBounds = Rect(0, 0, 0, 0)
         lifecycleScope.launch { showLoading() }
         dataViewModel.ensureData(this)
@@ -384,7 +385,7 @@ class CosplayCustomizeActivity : BaseActivity<ActivityCosplayCustomizeBinding>()
     private fun startCountdown() {
         countdownJob?.cancel()
         countdownJob = lifecycleScope.launch {
-            var secondsLeft = 600
+            var secondsLeft = 900
             while (secondsLeft >= 0) {
                 val m = secondsLeft / 60
                 val s = secondsLeft % 60
@@ -437,8 +438,9 @@ class CosplayCustomizeActivity : BaseActivity<ActivityCosplayCustomizeBinding>()
             val opt = ActivityOptions.makeCustomAnimation(
                 this@CosplayCustomizeActivity, R.anim.slide_in_right, R.anim.slide_out_left
             )
-            startActivity(intent, opt.toBundle())
-            finish()
+            showInterAll {  startActivity(intent, opt.toBundle())
+                finish()}
+
         }
     }
 
@@ -487,5 +489,22 @@ class CosplayCustomizeActivity : BaseActivity<ActivityCosplayCustomizeBinding>()
                     View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION or
                     View.SYSTEM_UI_FLAG_HIDE_NAVIGATION or
                     View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY
+    }
+
+    fun initNativeCollab() {
+        Admob.getInstance().loadNativeCollapNotBanner(
+            this,
+            getString(R.string.native_cl_cosplayCustom),
+            binding.flNativeCollab
+        )
+    }
+
+    override fun initAds() {
+        initNativeCollab()
+    }
+
+    override fun onRestart() {
+        super.onRestart()
+        initNativeCollab()
     }
 }

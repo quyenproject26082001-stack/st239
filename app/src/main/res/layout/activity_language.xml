@@ -19,14 +19,15 @@
     <LinearLayout
         android:id="@+id/cardContainer"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
         android:layout_marginHorizontal="8dp"
         android:layout_marginTop="84dp"
         tools:background="@drawable/bg_card_language"
         android:orientation="vertical"
-        android:paddingBottom="16dp"
+        android:paddingBottom="6dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/native_ads"
         app:layout_constraintTop_toTopOf="parent">
 
         <!-- checkmark done button (top-right) -->
@@ -52,7 +53,7 @@
             android:paddingHorizontal="20dp"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             tools:listitem="@layout/item_language"
-            android:paddingBottom="36dp"
+            android:paddingBottom="0dp"
             />
 
     </LinearLayout>
@@ -95,7 +96,18 @@
         android:background="@drawable/ic_back_setting"
         android:layout_marginStart="24dp"
         android:visibility="invisible"/>
-        
+    <FrameLayout
+        android:id="@+id/native_ads"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        >
+
+        <include layout="@layout/ads_native_big_btn_bottom_shimmer" />
+
+    </FrameLayout>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
