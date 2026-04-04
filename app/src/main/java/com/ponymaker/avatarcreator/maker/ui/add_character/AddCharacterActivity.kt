@@ -68,7 +68,6 @@ import com.ponymaker.avatarcreator.maker.data.model.draw.DrawableDraw
 import com.ponymaker.avatarcreator.maker.databinding.ActivityAddCharacterBinding
 import com.ponymaker.avatarcreator.maker.dialog.ChooseColorDialog
 import com.ponymaker.avatarcreator.maker.dialog.DialogSpeech
-import com.ponymaker.avatarcreator.maker.dialog.DialogType
 import com.ponymaker.avatarcreator.maker.dialog.YesNoDialog
 import com.ponymaker.avatarcreator.maker.listener.listenerdraw.OnDrawListener
 import com.ponymaker.avatarcreator.maker.ui.add_character.adapter.BackgroundColorAdapter
@@ -741,8 +740,7 @@ class AddCharacterActivity : BaseActivity<ActivityAddCharacterBinding>() {
 
     private fun confirmExit() {
         val dialog =
-            YesNoDialog(this, R.string.exit, R.string.do_you_want_to_exit,  isError = false,
-                dialogType = DialogType.DELETE_EXIT)
+            YesNoDialog(this, R.string.exit, R.string.do_you_want_to_exit, isError = false)
         LanguageHelper.setLocale(this)
         dialog.show()
         dialog.onYesClick = {
@@ -756,7 +754,7 @@ class AddCharacterActivity : BaseActivity<ActivityAddCharacterBinding>() {
     }
 
     private fun confirmReset() {
-        val dialog = YesNoDialog(this, R.string.reset, R.string.change_your_whole_design_are_you_sure, dialogType = DialogType.RESET)
+        val dialog = YesNoDialog(this, R.string.reset, R.string.change_your_whole_design_are_you_sure)
         dialog.show()
 
         fun dismissDialog() {

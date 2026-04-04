@@ -30,7 +30,6 @@ import com.ponymaker.avatarcreator.maker.core.utils.key.ValueKey
 import com.ponymaker.avatarcreator.maker.core.utils.state.SaveState
 import com.ponymaker.avatarcreator.maker.data.model.custom.ItemNavCustomModel
 import com.ponymaker.avatarcreator.maker.databinding.ActivityCustomizeBinding
-import com.ponymaker.avatarcreator.maker.dialog.DialogType
 import com.ponymaker.avatarcreator.maker.dialog.YesNoDialog
 import com.ponymaker.avatarcreator.maker.ui.home.DataViewModel
 import com.ponymaker.avatarcreator.maker.core.extensions.tap
@@ -565,8 +564,7 @@ class CustomizeCharacterActivity : BaseActivity<ActivityCustomizeBinding>() {
     private fun confirmExit() {
         val dialog =
             YesNoDialog(this, R.string.exit, R.string.do_you_want_to_exit,
-                isError = false,
-                dialogType = DialogType.DELETE_EXIT,true)
+                isError = false, showNativeAd = true)
         LanguageHelper.setLocale(this)
         dialog.show()
         dialog.onYesClick = {
@@ -702,8 +700,7 @@ class CustomizeCharacterActivity : BaseActivity<ActivityCustomizeBinding>() {
         val dialog = YesNoDialog(
             this@CustomizeCharacterActivity,
             R.string.reset,
-            R.string.change_your_whole_design_are_you_sure,
-            dialogType = DialogType.RESET
+            R.string.change_your_whole_design_are_you_sure
         )
         LanguageHelper.setLocale(this)
         dialog.show()

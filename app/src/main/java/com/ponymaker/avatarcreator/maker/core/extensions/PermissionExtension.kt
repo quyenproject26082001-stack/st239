@@ -13,7 +13,6 @@ import androidx.core.graphics.toColorInt
 import androidx.core.net.toUri
 import com.ponymaker.avatarcreator.maker.R
 import com.ponymaker.avatarcreator.maker.core.helper.LanguageHelper
-import com.ponymaker.avatarcreator.maker.dialog.DialogType
 import com.ponymaker.avatarcreator.maker.dialog.YesNoDialog
 
 
@@ -32,8 +31,7 @@ fun Activity.goToSettings() {
         context = this,
         title = R.string.permission,
         description = R.string.go_to_setting_message,
-        isError = false,
-        dialogType = DialogType.PERMISSION
+        isError = false
     )
     LanguageHelper.setLocale(this)
     dialog.show()

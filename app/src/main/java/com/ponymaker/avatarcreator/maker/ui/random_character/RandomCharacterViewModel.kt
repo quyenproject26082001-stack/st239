@@ -38,8 +38,7 @@ class RandomCharacterViewModel : ViewModel() {
                     context,
                     R.string.no_internet,
                     R.string.please_check_your_internet,
-                    isError = true,
-                    dialogType = com.ponymaker.avatarcreator.maker.dialog.DialogType.INTERNET
+                    isError = true
                 )
                 dialog.show()
                 dialog.onYesClick = {

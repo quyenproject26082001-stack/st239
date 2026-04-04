@@ -91,8 +91,7 @@ class ChooseCharacterActivity : BaseActivity<ActivityChooseCharacterBinding>() {
                         this@ChooseCharacterActivity,
                         R.string.notification,
                         R.string.internet_required_for_more_characters,
-                        isError = true,  // Shows only OK button
-                        dialogType = com.ponymaker.avatarcreator.maker.dialog.DialogType.INTERNET
+                        isError = true
                     )
                     dialog.show()
                     dialog.onYesClick = {
@@ -149,8 +148,7 @@ class ChooseCharacterActivity : BaseActivity<ActivityChooseCharacterBinding>() {
                             this@ChooseCharacterActivity,
                             R.string.no_internet,
                             R.string.please_check_your_internet,
-                            isError = true,
-                            dialogType = com.ponymaker.avatarcreator.maker.dialog.DialogType.INTERNET
+                            isError = true
                         )
                         dialog.show()
                         dialog.onYesClick = {

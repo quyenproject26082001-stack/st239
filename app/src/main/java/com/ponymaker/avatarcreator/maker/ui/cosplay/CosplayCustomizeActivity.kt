@@ -377,6 +377,7 @@ class CosplayCustomizeActivity : BaseActivity<ActivityCosplayCustomizeBinding>()
             val maxX = (containerW - thumbW).toFloat().coerceAtLeast(0f)
             binding.tvThumbProgress.translationX = (progress / 100f) * maxX
             binding.tvThumbProgress.text = "$progress%"
+            if (progress == 100) navigateToSuccess()
         }
     }
 
