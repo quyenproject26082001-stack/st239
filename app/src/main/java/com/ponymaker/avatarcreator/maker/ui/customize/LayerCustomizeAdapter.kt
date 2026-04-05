@@ -18,6 +18,7 @@ import com.ponymaker.avatarcreator.maker.core.utils.key.AssetsKey
 import com.ponymaker.avatarcreator.maker.data.model.custom.ItemNavCustomModel
 import com.ponymaker.avatarcreator.maker.databinding.ItemCustomizeBinding
 import com.bumptech.glide.Glide
+import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 import com.facebook.shimmer.ShimmerDrawable
 
 class LayerCustomizeAdapter(val context: Context) : ListAdapter<ItemNavCustomModel, LayerCustomizeAdapter.CustomizeViewHolder>(DiffCallback) {
@@ -88,7 +89,9 @@ class LayerCustomizeAdapter(val context: Context) : ListAdapter<ItemNavCustomMod
                         btnNone.gone()
                         imvImage.visible()
                         btnRandom.gone()
-                        Glide.with(root).load(item.thumb.ifEmpty { item.path }).placeholder(shimmerDrawable).into(imvImage)
+                        Glide.with(root).load(item.thumb.ifEmpty { item.path })
+                            .transform(RoundedCorners((8f * context.resources.displayMetrics.density).toInt()))
+                            .placeholder(shimmerDrawable).into(imvImage)
                     }
                 }
 

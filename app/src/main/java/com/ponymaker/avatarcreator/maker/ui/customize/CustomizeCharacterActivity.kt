@@ -426,6 +426,7 @@ class CustomizeCharacterActivity : BaseActivity<ActivityCustomizeBinding>() {
         lifecycleScope.launch(Dispatchers.IO) {
             val pathSelected = viewModel.setClickFillLayer(item, position)
             withContext(Dispatchers.Main) {
+                android.util.Log.d("CanvasLoad", "load onto canvas: positionCustom=${viewModel.positionCustom}, path=$pathSelected")
                 Glide.with(this@CustomizeCharacterActivity).load(pathSelected)
                     .into(viewModel.imageViewList[viewModel.positionCustom])
                 val listToSubmit = viewModel.itemNavList[viewModel.positionNavSelected]
