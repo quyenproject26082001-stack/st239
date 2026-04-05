@@ -407,7 +407,9 @@ class CosplayCustomizeActivity : BaseActivity<ActivityCosplayCustomizeBinding>()
         countdownJob?.cancel()
         lifecycleScope.launch {
             showLoading()
-          //  binding.layoutCustomLayer.background = null
+            delay(500)
+
+            //  binding.layoutCustomLayer.background = null
             val savedPath = withContext(Dispatchers.IO) {
                 try {
                     val bitmap = BitmapHelper.createBimapFromView(binding.layoutCustomLayer)
