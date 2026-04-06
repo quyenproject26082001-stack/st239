@@ -179,11 +179,7 @@ class TrendingActivity : BaseActivity<ActivityTrendingBinding>() {
             }
             android.util.Log.d("TIMING_TRENDING", "  [Step2] processCharacter[0] (${filteredData[0].dataName}, isFromAPI=${filteredData[0].isFromAPI}): ${System.currentTimeMillis() - processFirstStart}ms | randomList.size=${viewModel.randomList.size}")
 
-            val renderStart = System.currentTimeMillis()
-            showRandomSuggestion {
-                android.util.Log.d("TIMING_TRENDING", "  [Step3] renderSuggestion DONE: ${System.currentTimeMillis() - renderStart}ms | tổng từ initData start: ${System.currentTimeMillis() - t0}ms")
-                lifecycleScope.launch { dismissLoading() }
-            }
+            lifecycleScope.launch { dismissLoading() }
 
             // Xử lý phần còn lại ở background
             if (filteredData.size > 1) {
@@ -223,9 +219,6 @@ class TrendingActivity : BaseActivity<ActivityTrendingBinding>() {
 
         val totalDuration = 800L
 
-        // Show GIF while generating
-        Glide.with(this).asGif().load(R.drawable.gif).into(binding.imvImage)
-
         // Dice: spin 3 full rounds, decelerating like a real dice roll
         val diceAnim = ObjectAnimator.ofFloat(binding.dices, "rotation", 0f, 1080f).apply {
             duration = totalDuration
@@ -234,6 +227,7 @@ class TrendingActivity : BaseActivity<ActivityTrendingBinding>() {
         }
 
         lifecycleScope.launch {
+            showLoading()
             delay(totalDuration)
 
             diceAnim.cancel()
@@ -256,6 +250,7 @@ class TrendingActivity : BaseActivity<ActivityTrendingBinding>() {
                 }
             }
             val finalModel = availableList.randomOrNull() ?: run {
+                dismissLoading()
                 isAnimating = false
                 binding.btnGenerate.visibility = View.VISIBLE
                 binding.actionBar.btnActionBarRightText.visibility = View.VISIBLE
@@ -264,6 +259,7 @@ class TrendingActivity : BaseActivity<ActivityTrendingBinding>() {
 
             currentSuggestion = finalModel
             renderSuggestion(finalModel) {
+                lifecycleScope.launch { dismissLoading() }
                 isAnimating = false
                 binding.btnGenerate.visibility = View.VISIBLE
                 binding.actionBar.btnActionBarRightText.visibility = View.VISIBLE
