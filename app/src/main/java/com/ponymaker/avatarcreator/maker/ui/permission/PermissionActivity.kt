@@ -1,10 +1,14 @@
 package com.ponymaker.avatarcreator.maker.ui.permission
 
+import android.content.Context
 import android.content.pm.PackageManager
+import android.net.ConnectivityManager
+import android.net.NetworkCapabilities
 import android.os.Build
 import android.text.TextUtils
 import android.view.LayoutInflater
 import androidx.activity.viewModels
+import androidx.constraintlayout.widget.ConstraintSet
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
@@ -193,7 +197,26 @@ class PermissionActivity : BaseActivity<ActivityPermissionBinding>() {
     override fun shouldPlayBackgroundMusic(): Boolean = false
 
 
+    private fun isNetworkAvailable(): Boolean {
+        val cm = getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+        return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            val caps = cm.getNetworkCapabilities(cm.activeNetwork ?: return false) ?: return false
+            caps.hasCapability(NetworkCapabilities.NET_CAPABILITY_INTERNET)
+        } else {
+            @Suppress("DEPRECATION")
+            cm.activeNetworkInfo?.isConnected == true
+        }
+    }
+
     override fun initAds() {
+        if (!isNetworkAvailable()) {
+            ConstraintSet().apply {
+                clone(binding.main)
+                connect(R.id.cardContainer, ConstraintSet.BOTTOM, R.id.glper, ConstraintSet.BOTTOM)
+                applyTo(binding.main)
+            }
+        }
+
         Admob.getInstance().loadInterAds(
             this@PermissionActivity, getString(R.string.inter_per), object : InterCallback() {
                 override fun onAdLoadSuccess(interstitialAd: InterstitialAd?) {

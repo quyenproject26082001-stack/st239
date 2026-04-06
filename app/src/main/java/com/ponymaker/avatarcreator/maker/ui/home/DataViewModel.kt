@@ -26,6 +26,8 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.async
+import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.launch
@@ -113,31 +115,41 @@ class DataViewModel() : ViewModel() {
         Log.d("TIMING_TRENDING", "  [API] getAllParts() START")
         emit(HandleState.LOADING)
 
-        val primaryStart = System.currentTimeMillis()
-        val response = withTimeoutOrNull(5_000) {
-            try {
-                RetrofitClient.api.getAllData()
-            } catch (e: Exception) {
-                Log.e("nbhieu", "BASE_URL failed: ${e.message}")
-                Log.e("TIMING_TRENDING", "  [API] BASE_URL fail sau ${System.currentTimeMillis() - primaryStart}ms: ${e.message}")
-                null
+        val start = System.currentTimeMillis()
+        data class ApiResult(val response: retrofit2.Response<*>?, val isPreventive: Boolean)
+
+        val result = coroutineScope {
+            val primaryDeferred = async {
+                withTimeoutOrNull(5_000) {
+                    try { RetrofitClient.api.getAllData() } catch (e: Exception) {
+                        Log.e("TIMING_TRENDING", "  [API] BASE_URL fail: ${e.message}")
+                        null
+                    }
+                }
             }
-        }.also {
-            if (it != null) Log.d("TIMING_TRENDING", "  [API] BASE_URL response: ${System.currentTimeMillis() - primaryStart}ms | success=${it.isSuccessful}")
-            else if (System.currentTimeMillis() - primaryStart >= 4900) Log.w("TIMING_TRENDING", "  [API] BASE_URL timeout (5s)")
-        } ?: withTimeoutOrNull(5_000) {
-            val fallbackStart = System.currentTimeMillis()
-            try {
-                RetrofitPreventive.api.getAllData()
-            } catch (e: Exception) {
-                Log.e("nbhieu", "BASE_URL_PREVENTIVE failed: ${e.message}")
-                Log.e("TIMING_TRENDING", "  [API] BASE_URL_PREVENTIVE fail sau ${System.currentTimeMillis() - fallbackStart}ms: ${e.message}")
-                null
+            val preventiveDeferred = async {
+                withTimeoutOrNull(5_000) {
+                    try { RetrofitPreventive.api.getAllData() } catch (e: Exception) {
+                        Log.e("TIMING_TRENDING", "  [API] BASE_URL_PREVENTIVE fail: ${e.message}")
+                        null
+                    }
+                }
             }
-        }.also {
-            if (it != null) Log.d("TIMING_TRENDING", "  [API] BASE_URL_PREVENTIVE response: ok")
-            else Log.w("TIMING_TRENDING", "  [API] BASE_URL_PREVENTIVE cũng fail/timeout")
+
+            val primary = primaryDeferred.await()
+            if (primary != null && primary.isSuccessful) {
+                preventiveDeferred.cancel()
+                Log.d("TIMING_TRENDING", "  [API] BASE_URL win: ${System.currentTimeMillis() - start}ms")
+                ApiResult(primary, false)
+            } else {
+                val preventive = preventiveDeferred.await()
+                Log.d("TIMING_TRENDING", "  [API] BASE_URL_PREVENTIVE used: ${System.currentTimeMillis() - start}ms")
+                ApiResult(preventive, true)
+            }
         }
+
+        isFailBaseURL = result.isPreventive
+        val response = result.response
 
         if (response != null && response.isSuccessful && response.body() != null) {
             val dataMap = ArrayList<DataAPI>()

@@ -8,35 +8,47 @@
     tools:context=".ui.permission.PermissionActivity">
 
     <ImageView
+        android:id="@+id/imgBg"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:scaleType="centerCrop"
         android:background="@drawable/bg_app" />
-
+<androidx.constraintlayout.widget.Guideline
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    app:layout_constraintGuide_percent="0.55"
+    android:id="@+id/glper"
+    />
     <!-- White card container — wraps all content tightly -->
     <LinearLayout
         android:id="@+id/cardContainer"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
         android:layout_marginHorizontal="8dp"
-        android:layout_marginTop="92dp"
+        android:layout_marginTop="62dp"
         tools:background="@drawable/bg_card_language"
         android:orientation="vertical"
         android:paddingTop="12dp"
-        android:paddingBottom="20dp"
+        android:paddingBottom="0dp"
         android:paddingHorizontal="20dp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/tvContinue"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
         <!-- imgPermission -->
         <ImageView
             android:id="@+id/imgPermission"
-            android:layout_width="236dp"
+            android:layout_width="wrap_content"
             android:layout_marginTop="16dp"
-            android:layout_height="236dp"
+            android:layout_height="0dp"
+            android:layout_marginHorizontal="52dp"
+            android:layout_weight="1"
+            android:maxHeight="236dp"
             android:layout_gravity="center_horizontal"
             android:adjustViewBounds="true"
+            android:scaleType="fitCenter"
             android:src="@drawable/img_permission" />
 
         <!-- txtPermission -->
@@ -44,7 +56,7 @@
             android:id="@+id/txtPermission"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="0dp"
+            android:layout_marginTop="-60dp"
             android:layout_marginHorizontal="8dp"
             android:fontFamily="@font/londrina_solid_regular">
 
@@ -126,9 +138,7 @@
                 android:src="@drawable/ic_sw_on" />
         </RelativeLayout>
         
-        <Space
-            android:layout_width="match_parent"
-            android:layout_height="20dp"/>
+
 
     </LinearLayout>
 
@@ -137,7 +147,7 @@
         android:id="@+id/tvPermission"
         android:layout_width="0dp"
         android:layout_height="40dp"
-        android:layout_marginTop="72dp"
+        android:layout_marginTop="42dp"
         android:background="@drawable/bg_text_lang"
         android:elevation="4dp"
         android:fontFamily="@font/cherry_bomb_regular"
